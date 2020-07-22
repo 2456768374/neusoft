@@ -18,7 +18,18 @@
     from factory
     where create_userid=#{uname} and password=#{upwd}
   </select>
-
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+    where create_userid=#{uname}
+  </select>
+  <select id="selectByUfty" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+    where factory_name=#{ufty}
+  </select>
   <insert id="insert" parameterType="com.neusoft.entity.Factory" >
     insert into factory (create_userid, factory_name, factory_img_url, 
       factory_status, password)
