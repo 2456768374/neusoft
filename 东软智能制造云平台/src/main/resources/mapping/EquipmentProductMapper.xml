@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neusoft.dao.EquipmentProductMapper" >
+  <resultMap id="BaseResultMap" type="com.neusoft.entity.EquipmentProduct" >
+    <result column="equipment_num" property="equipmentNum" jdbcType="INTEGER" />
+    <result column="product_num" property="productNum" jdbcType="INTEGER" />
+    <result column="yield" property="yield" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.neusoft.entity.EquipmentProduct" >
+    insert into equipment_product (equipment_num, product_num, yield
+      )
+    values (#{equipmentNum,jdbcType=INTEGER}, #{productNum,jdbcType=INTEGER}, #{yield,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.entity.EquipmentProduct" >
+    insert into equipment_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="equipmentNum != null" >
+        equipment_num,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="yield != null" >
+        yield,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="equipmentNum != null" >
+        #{equipmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="productNum != null" >
+        #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="yield != null" >
+        #{yield,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

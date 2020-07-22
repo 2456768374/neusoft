@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neusoft.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.neusoft.entity.Product" >
+    <result column="product_num" property="productNum" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_img_url" property="productImgUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.neusoft.entity.Product" >
+    insert into product (product_num, product_name, product_img_url
+      )
+    values (#{productNum,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productImgUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.entity.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productImgUrl != null" >
+        product_img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productNum != null" >
+        #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productImgUrl != null" >
+        #{productImgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

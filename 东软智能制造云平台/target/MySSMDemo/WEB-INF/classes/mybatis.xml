@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--声明头 请一定要复制 不要自己敲  -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--导入实体类包    -->
+    <typeAliases>
+        <package name="com.neusoft.entity"/>
+    </typeAliases>
+
+</configuration>

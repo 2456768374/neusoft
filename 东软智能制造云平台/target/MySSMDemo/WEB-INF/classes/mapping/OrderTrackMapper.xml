@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neusoft.dao.OrderTrackMapper" >
+  <resultMap id="BaseResultMap" type="com.neusoft.entity.OrderTrack" >
+    <result column="work_number" property="workNumber" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="equipment_number" property="equipmentNumber" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="over_time" property="overTime" jdbcType="TIMESTAMP" />
+    <result column="process_number" property="processNumber" jdbcType="INTEGER" />
+    <result column="qualify" property="qualify" jdbcType="INTEGER" />
+    <result column="report" property="report" jdbcType="INTEGER" />
+    <result column="order_amount" property="orderAmount" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.neusoft.entity.OrderTrack" >
+    insert into order_track (work_number, product_name, equipment_number, 
+      state, start_time, over_time, 
+      process_number, qualify, report, 
+      order_amount)
+    values (#{workNumber,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{equipmentNumber,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{overTime,jdbcType=TIMESTAMP}, 
+      #{processNumber,jdbcType=INTEGER}, #{qualify,jdbcType=INTEGER}, #{report,jdbcType=INTEGER}, 
+      #{orderAmount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.entity.OrderTrack" >
+    insert into order_track
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="workNumber != null" >
+        work_number,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="equipmentNumber != null" >
+        equipment_number,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="overTime != null" >
+        over_time,
+      </if>
+      <if test="processNumber != null" >
+        process_number,
+      </if>
+      <if test="qualify != null" >
+        qualify,
+      </if>
+      <if test="report != null" >
+        report,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="workNumber != null" >
+        #{workNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentNumber != null" >
+        #{equipmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overTime != null" >
+        #{overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processNumber != null" >
+        #{processNumber,jdbcType=INTEGER},
+      </if>
+      <if test="qualify != null" >
+        #{qualify,jdbcType=INTEGER},
+      </if>
+      <if test="report != null" >
+        #{report,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

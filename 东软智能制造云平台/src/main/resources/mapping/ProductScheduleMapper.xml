@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neusoft.dao.ProductScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.neusoft.entity.ProductSchedule" >
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_userid" property="createUserid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_userid" property="updateUserid" jdbcType="INTEGER" />
+    <result column="schedule_num" property="scheduleNum" jdbcType="VARCHAR" />
+    <result column="schedule_count" property="scheduleCount" jdbcType="INTEGER" />
+    <result column="schedule_status" property="scheduleStatus" jdbcType="INTEGER" />
+    <result column="plan_num" property="planNum" jdbcType="INTEGER" />
+    <result column="product_num" property="productNum" jdbcType="INTEGER" />
+    <result column="equipment_num" property="equipmentNum" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.neusoft.entity.ProductSchedule" >
+    insert into product_schedule (create_time, create_userid, update_time, 
+      update_userid, schedule_num, schedule_count, 
+      schedule_status, plan_num, product_num, 
+      equipment_num, start_date, end_date
+      )
+    values (#{createTime,jdbcType=TIMESTAMP}, #{createUserid,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserid,jdbcType=INTEGER}, #{scheduleNum,jdbcType=VARCHAR}, #{scheduleCount,jdbcType=INTEGER}, 
+      #{scheduleStatus,jdbcType=INTEGER}, #{planNum,jdbcType=INTEGER}, #{productNum,jdbcType=INTEGER}, 
+      #{equipmentNum,jdbcType=INTEGER}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.entity.ProductSchedule" >
+    insert into product_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserid != null" >
+        create_userid,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserid != null" >
+        update_userid,
+      </if>
+      <if test="scheduleNum != null" >
+        schedule_num,
+      </if>
+      <if test="scheduleCount != null" >
+        schedule_count,
+      </if>
+      <if test="scheduleStatus != null" >
+        schedule_status,
+      </if>
+      <if test="planNum != null" >
+        plan_num,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="equipmentNum != null" >
+        equipment_num,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserid != null" >
+        #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserid != null" >
+        #{updateUserid,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleNum != null" >
+        #{scheduleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleCount != null" >
+        #{scheduleCount,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleStatus != null" >
+        #{scheduleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planNum != null" >
+        #{planNum,jdbcType=INTEGER},
+      </if>
+      <if test="productNum != null" >
+        #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentNum != null" >
+        #{equipmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

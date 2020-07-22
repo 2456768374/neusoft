@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form class="container form-horizontal" id="" name=""
+      action="/user/loginservice.do" method="post"
+      onsubmit="return submitFrm();">
+
+    <div class="form-group">
+        <label for="uname">用户名:</label>
+        <input id="uname" name="uname" class="form-control" type="text"
+               onblur="checkInputforReg(this.id,regUserName,'您输入的用户名格式不正确,用户名为xxx')"/>
+        <span id="unameTip"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="upwd">密码:</label>
+        <input id="upwd" name="upwd" class="form-control" type="password"
+               onblur="checkInputforReg(this.id,regPwd,'您输入的密码格式不正确,用户名为xxx')"/>
+        <span id="upwdTip"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit">Login</button>
+    </div>
+</form>
+</body>
+</html>
+<script>
+    //正则表达式
+    var regUserName=/^[a-z]\w{1,11}$/;
+    var regPwd=/^\d{5,11}$/;
+
+    function $(id){
+        return document.getElementById(id);
+    }
+
+    //(元素的id,验证的正则表达式,错误提示信息)
+    function checkInputforReg(id,reg,msg){
+        var input=$(id);
+        if(!reg.test(input.value)){
+            $(id+"Tip").innerHTML=msg;
+            $(id+"Tip").className="text-danger";
+            return false;
+        }
+        else{
+            $(id+"Tip").innerHTML="√ ok";
+            $(id+"Tip").className="text-success";
+            return true;
+        }
+    }
+
+
+    function submitFrm(){
+        if(checkInputforReg("uname",regUserName,'您输入的用户名格式不正确,用户名为xxx')&&
+            checkInputforReg("upwd",regPwd,'您输入的密码格式不正确,用户名为xxx'))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+
+</script>

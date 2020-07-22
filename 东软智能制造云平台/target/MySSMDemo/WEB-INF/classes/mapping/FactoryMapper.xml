@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neusoft.dao.FactoryMapper" >
+  <resultMap id="BaseResultMap" type="com.neusoft.entity.Factory" >
+    <result column="create_userid" property="createUserid" jdbcType="VARCHAR" />
+    <result column="factory_name" property="factoryName" jdbcType="VARCHAR" />
+    <result column="factory_img_url" property="factoryImgUrl" jdbcType="VARCHAR" />
+    <result column="factory_status" property="factoryStatus" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    create_userid, factory_name, factory_img_url, factory_status, password
+  </sql>
+
+  <select id="selectByUnameAndPwd" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+    where create_userid=#{uname} and password=#{upwd}
+  </select>
+
+  <insert id="insert" parameterType="com.neusoft.entity.Factory" >
+    insert into factory (create_userid, factory_name, factory_img_url, 
+      factory_status, password)
+    values (#{createUserid,jdbcType=VARCHAR}, #{factoryName,jdbcType=VARCHAR}, #{factoryImgUrl,jdbcType=VARCHAR}, 
+      #{factoryStatus,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.entity.Factory" >
+    insert into factory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createUserid != null" >
+        create_userid,
+      </if>
+      <if test="factoryName != null" >
+        factory_name,
+      </if>
+      <if test="factoryImgUrl != null" >
+        factory_img_url,
+      </if>
+      <if test="factoryStatus != null" >
+        factory_status,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createUserid != null" >
+        #{createUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryName != null" >
+        #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryImgUrl != null" >
+        #{factoryImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryStatus != null" >
+        #{factoryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
