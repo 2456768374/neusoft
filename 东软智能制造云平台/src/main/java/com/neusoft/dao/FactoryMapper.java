@@ -8,7 +8,7 @@ public interface FactoryMapper {
 
     int insertSelective(Factory record);
 
-    Factory selectByPrimaryKey(@Param("username")String uname);
+    Factory selectByPrimaryKey(@Param("uname")String uname);
 
     Factory selectByUnameAndPwd(@Param("uname") String uname, @Param("upwd") String upwd);
 

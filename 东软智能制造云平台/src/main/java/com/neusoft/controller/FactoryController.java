@@ -73,6 +73,8 @@ public class FactoryController {
                 user.setCreateUserid(uname);
                 user.setPassword(upwd);
                 user.setFactoryName(ufty);
+                user.setFactoryStatus(1);
+                user.setFactoryImgUrl(null);
                 factoryService.insert(user);
                 response.setCharacterEncoding("utf-8");
                 PrintWriter pw=response.getWriter();
