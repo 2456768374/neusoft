@@ -5,25 +5,46 @@
     <result column="create_userid" property="createUserid" jdbcType="VARCHAR" />
     <result column="factory_name" property="factoryName" jdbcType="VARCHAR" />
     <result column="factory_img_url" property="factoryImgUrl" jdbcType="VARCHAR" />
-    <result column="factory_status" property="factoryStatus" jdbcType="INTEGER" />
+    <result column="factory_status" property="factoryStatus" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="by1" property="by1" jdbcType="VARCHAR" />
+    <result column="by2" property="by2" jdbcType="VARCHAR" />
+    <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    create_userid, factory_name, factory_img_url, factory_status, password
-  </sql>
+  <sql id="Base_Column_List">
+		create_userid, factory_name, factory_img_url, factory_status, password
+	</sql>
 
-  <select id="selectByUnameAndPwd" resultMap="BaseResultMap" >
+  <!--用户登录 -->
+  <select id="selectByUnameAndUpwd"  resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from factory
-    where create_userid=#{uname} and password=#{upwd}
+    where
+    create_userid = #{uname}
+    and password = #{upwd}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+    where create_userid=#{uname}
+  </select>
+  <select id="selectByUfty" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+    where factory_name=#{ufty}
   </select>
 
   <insert id="insert" parameterType="com.neusoft.entity.Factory" >
     insert into factory (create_userid, factory_name, factory_img_url, 
-      factory_status, password)
+      factory_status, password, by1, 
+      by2, by3)
     values (#{createUserid,jdbcType=VARCHAR}, #{factoryName,jdbcType=VARCHAR}, #{factoryImgUrl,jdbcType=VARCHAR}, 
-      #{factoryStatus,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR})
+      #{factoryStatus,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{by1,jdbcType=VARCHAR}, 
+      #{by2,jdbcType=VARCHAR}, #{by3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.neusoft.entity.Factory" >
     insert into factory
@@ -43,6 +64,15 @@
       <if test="password != null" >
         password,
       </if>
+      <if test="by1 != null" >
+        by1,
+      </if>
+      <if test="by2 != null" >
+        by2,
+      </if>
+      <if test="by3 != null" >
+        by3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="createUserid != null" >
@@ -55,10 +85,19 @@
         #{factoryImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="factoryStatus != null" >
-        #{factoryStatus,jdbcType=INTEGER},
+        #{factoryStatus,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="by1 != null" >
+        #{by1,jdbcType=VARCHAR},
+      </if>
+      <if test="by2 != null" >
+        #{by2,jdbcType=VARCHAR},
+      </if>
+      <if test="by3 != null" >
+        #{by3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

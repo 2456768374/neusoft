@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MySSMDemo" />
+        <module name="东软智能制造云平台" />
       </profile>
     </annotationProcessing>
   </component>

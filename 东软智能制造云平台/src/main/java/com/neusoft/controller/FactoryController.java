@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -54,9 +55,11 @@ public class FactoryController {
             @RequestParam(required = true) String uname,
             @RequestParam(required = true) String upwd,
             @RequestParam(required = true) String ufty,
+            HttpServletRequest request,
             HttpServletResponse response) throws IOException, InterruptedException {
         Factory user1=factoryService.getUser1(uname);
         if(user1!=null){
+            request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
             PrintWriter pw=response.getWriter();
             pw.write("<script language='javascript' charset='utf-8' >alert('该用户名已被注册')</script>");
@@ -64,6 +67,7 @@ public class FactoryController {
         else {
             Factory user2=factoryService.getUser2(ufty);
             if (user2!=null){
+                request.setCharacterEncoding("utf-8");
                 response.setCharacterEncoding("utf-8");
                 PrintWriter pw=response.getWriter();
                 pw.write("<script language='javascript' charset='utf-8' >alert('该工厂名已被注册')</script>");
@@ -73,9 +77,10 @@ public class FactoryController {
                 user.setCreateUserid(uname);
                 user.setPassword(upwd);
                 user.setFactoryName(ufty);
-                user.setFactoryStatus(1);
+                user.setFactoryStatus("10");
                 user.setFactoryImgUrl(null);
                 factoryService.insert(user);
+                request.setCharacterEncoding("utf-8");
                 response.setCharacterEncoding("utf-8");
                 PrintWriter pw=response.getWriter();
                 pw.write("<script language='javascript' charset='utf-8' >alert('注册成功，请重新登录');" +

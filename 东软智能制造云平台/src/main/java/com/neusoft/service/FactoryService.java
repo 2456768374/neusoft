@@ -1,9 +1,9 @@
 package com.neusoft.service;
 
+
 import com.neusoft.entity.Factory;
 
 public interface FactoryService {
-
     Factory getUser(String uname, String upwd);
 
     Factory getUser1(String uname);
@@ -12,3 +12,5 @@ public interface FactoryService {
 
     void insert(Factory record);
 }
+
+

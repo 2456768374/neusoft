@@ -9,22 +9,32 @@ import com.neusoft.service.FactoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("factoryService")
 public class FactoryServiceimpl implements FactoryService {
     @Autowired
     private FactoryMapper factoryMapper;
 
+
     @Override
     public Factory getUser(String uname, String upwd) {
-        return factoryMapper.selectByUnameAndPwd(uname,upwd);
+        return factoryMapper.selectByUnameAndUpwd(uname, upwd);
     }
 
     @Override
-    public Factory getUser1(String uname){return factoryMapper.selectByPrimaryKey(uname);}
+    public Factory getUser1(String uname) {
+        return factoryMapper.selectByPrimaryKey(uname);
+    }
 
     @Override
-    public Factory getUser2(String ufty){return factoryMapper.selectByUfty(ufty);}
+    public Factory getUser2(String ufty) {
+        return factoryMapper.selectByUfty(ufty);
+    }
 
     @Override
-    public void insert(Factory record){ factoryMapper.insert(record);}
+    public void insert(Factory record) {
+        factoryMapper.insert(record);
+    }
 }

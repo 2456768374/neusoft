@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.neusoft.dao.ProductOrderMapper" >
   <resultMap id="BaseResultMap" type="com.neusoft.entity.ProductOrder" >
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="create_userid" property="createUserid" jdbcType="INTEGER" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="update_userid" property="updateUserid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="create_userid" property="createUserid" jdbcType="VARCHAR" />
     <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
-    <result column="order_source" property="orderSource" jdbcType="INTEGER" />
-    <result column="product_id" property="productId" jdbcType="INTEGER" />
-    <result column="product_count" property="productCount" jdbcType="INTEGER" />
+    <result column="order_source" property="orderSource" jdbcType="VARCHAR" />
+    <result column="product_num" property="productNum" jdbcType="VARCHAR" />
+    <result column="product_count" property="productCount" jdbcType="VARCHAR" />
     <result column="end_date" property="endDate" jdbcType="DATE" />
-    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
-    <result column="factory_yield" property="factoryYield" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="by1" property="by1" jdbcType="VARCHAR" />
+    <result column="by2" property="by2" jdbcType="VARCHAR" />
+    <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.neusoft.entity.ProductOrder" >
-    insert into product_order (create_time, create_userid, update_time, 
-      update_userid, order_num, order_source, 
-      product_id, product_count, end_date, 
-      order_status, factory_yield)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{createUserid,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateUserid,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{orderSource,jdbcType=INTEGER}, 
-      #{productId,jdbcType=INTEGER}, #{productCount,jdbcType=INTEGER}, #{endDate,jdbcType=DATE}, 
-      #{orderStatus,jdbcType=INTEGER}, #{factoryYield,jdbcType=INTEGER})
+    insert into product_order (create_time, create_userid, order_num, 
+      order_source, product_num, product_count, 
+      end_date, order_status, by1, 
+      by2, by3)
+    values (#{createTime,jdbcType=DATE}, #{createUserid,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, 
+      #{orderSource,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR}, #{productCount,jdbcType=VARCHAR}, 
+      #{endDate,jdbcType=DATE}, #{orderStatus,jdbcType=VARCHAR}, #{by1,jdbcType=VARCHAR}, 
+      #{by2,jdbcType=VARCHAR}, #{by3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.neusoft.entity.ProductOrder" >
     insert into product_order
@@ -33,20 +33,14 @@
       <if test="createUserid != null" >
         create_userid,
       </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-      <if test="updateUserid != null" >
-        update_userid,
-      </if>
       <if test="orderNum != null" >
         order_num,
       </if>
       <if test="orderSource != null" >
         order_source,
       </if>
-      <if test="productId != null" >
-        product_id,
+      <if test="productNum != null" >
+        product_num,
       </if>
       <if test="productCount != null" >
         product_count,
@@ -57,43 +51,49 @@
       <if test="orderStatus != null" >
         order_status,
       </if>
-      <if test="factoryYield != null" >
-        factory_yield,
+      <if test="by1 != null" >
+        by1,
+      </if>
+      <if test="by2 != null" >
+        by2,
+      </if>
+      <if test="by3 != null" >
+        by3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        #{createTime,jdbcType=DATE},
       </if>
       <if test="createUserid != null" >
-        #{createUserid,jdbcType=INTEGER},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUserid != null" >
-        #{updateUserid,jdbcType=INTEGER},
+        #{createUserid,jdbcType=VARCHAR},
       </if>
       <if test="orderNum != null" >
         #{orderNum,jdbcType=VARCHAR},
       </if>
       <if test="orderSource != null" >
-        #{orderSource,jdbcType=INTEGER},
+        #{orderSource,jdbcType=VARCHAR},
       </if>
-      <if test="productId != null" >
-        #{productId,jdbcType=INTEGER},
+      <if test="productNum != null" >
+        #{productNum,jdbcType=VARCHAR},
       </if>
       <if test="productCount != null" >
-        #{productCount,jdbcType=INTEGER},
+        #{productCount,jdbcType=VARCHAR},
       </if>
       <if test="endDate != null" >
         #{endDate,jdbcType=DATE},
       </if>
       <if test="orderStatus != null" >
-        #{orderStatus,jdbcType=INTEGER},
+        #{orderStatus,jdbcType=VARCHAR},
       </if>
-      <if test="factoryYield != null" >
-        #{factoryYield,jdbcType=INTEGER},
+      <if test="by1 != null" >
+        #{by1,jdbcType=VARCHAR},
+      </if>
+      <if test="by2 != null" >
+        #{by2,jdbcType=VARCHAR},
+      </if>
+      <if test="by3 != null" >
+        #{by3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
