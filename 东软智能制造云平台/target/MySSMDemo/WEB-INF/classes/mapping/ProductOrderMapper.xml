@@ -14,6 +14,67 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		create_time, create_userid, order_num, order_source, product_num, product_count, end_date, order_status
+	</sql>
+  <select id="queryForList" resultType="map">
+    SELECT MONTH(end_date) AS month,count(*) AS sum FROM product_order GROUP BY MONTH(end_date)
+    </select>
+  <select id="pie" resultType="map">
+    SELECT CASE WHEN order_status='10' THEN '未接单' WHEN order_status='20' THEN '已接单' WHEN order_status='30' THEN '已完成' WHEN order_status='40' THEN '生产中'
+    WHEN order_status='50' THEN '已拒单'
+ end AS Status,count(*)as sum FROM product_order GROUP BY order_status
+    </select>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_order
+  </select>
+  <select id="selectByNumAndStatus"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_order
+    where
+    order_num = #{order_num}
+    and product_num = #{product_num}
+  </select>
+  <select id="selectByNumAndStatus2"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_order
+    where
+    order_num = #{order_num}
+    and order_status = #{order_status}
+  </select>
+  <select id="selectByNum"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_order
+    where
+    order_num = #{order_num}
+  </select>
+  <!--根据状态更新订单数据 -->
+  <update id="updateByStatus" parameterType="com.neusoft.entity.ProductOrder">
+		update product_order
+		set order_status = 20
+		where order_num = #{order_num}
+	</update>
+  <update id="updateByStatus2" parameterType="com.neusoft.entity.ProductOrder">
+		update product_order
+		set order_status = 50
+		where order_num = #{order_num}
+	</update>
+  <update id="updateByStatus3" parameterType="com.neusoft.entity.ProductOrder">
+		update product_order
+		set order_status = 30
+		where order_num = #{order_num}
+	</update>
+  <update id="updateByStatus4" parameterType="com.neusoft.entity.ProductOrder">
+		update product_order
+		set order_status = 40
+		where order_num = #{order_num}
+	</update>
+
   <insert id="insert" parameterType="com.neusoft.entity.ProductOrder" >
     insert into product_order (create_time, create_userid, order_num, 
       order_source, product_num, product_count, 

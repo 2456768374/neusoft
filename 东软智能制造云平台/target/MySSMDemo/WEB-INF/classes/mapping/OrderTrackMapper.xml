@@ -13,6 +13,25 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		schedule_num, plan_num, schedule_status, product_num, equment_num, hege_count, jiagong_vount
+	</sql>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from order_track
+  </select>
+  <update id="update" parameterType="com.neusoft.entity.OrderTrack">
+		update order_track
+		set hege_count = #{hege_count}, jiagong_vount=#{jiagong_vount}
+		where schedule_num = #{schedule_num} and equment_num = #{equment_num}
+	</update>
+  <update id="updateByNum" parameterType="com.neusoft.entity.OrderTrack">
+		update order_track
+		set schedule_status = 30
+		where schedule_num = #{schedule_num}
+	</update>
+
   <insert id="insert" parameterType="com.neusoft.entity.OrderTrack" >
     insert into order_track (schedule_num, plan_num, schedule_status, 
       product_num, equment_num, hege_count, 

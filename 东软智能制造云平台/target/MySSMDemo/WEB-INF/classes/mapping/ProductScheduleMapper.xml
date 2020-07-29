@@ -15,6 +15,41 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		plan_num, product_num, plan_count, schedule_num, equipment_num, start_date, end_date, schedule_status
+	</sql>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_schedule
+  </select>
+  <select id="selectByNum"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_schedule
+    where schedule_num = #{schedule_num}
+  </select>
+  <select id="selectByEqu"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_schedule
+    where equipment_num = #{equipment_num}
+  </select>
+  <update id="updateByStatus" parameterType="com.neusoft.entity.ProductSchedule">
+		update product_schedule
+		set schedule_status = 20
+		where schedule_num = #{schedule_num}
+	</update>
+  <update id="updateByNum" parameterType="com.neusoft.entity.ProductSchedule">
+		update product_schedule
+		set schedule_status = 30
+		where schedule_num = #{schedule_num}
+	</update>
+  <delete id="deleteByNum" parameterType="com.neusoft.entity.ProductSchedule" >
+    delete from product_schedule
+    where schedule_num = #{schedule_num} and equipment_num = #{equipment_num}
+  </delete>
+
   <insert id="insert" parameterType="com.neusoft.entity.ProductSchedule" >
     insert into product_schedule (plan_num, product_num, plan_count, 
       product_count, schedule_num, equipment_num, 

@@ -15,6 +15,12 @@
 		create_userid, factory_name, factory_img_url, factory_status, password
 	</sql>
 
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from factory
+  </select>
+
   <!--用户登录 -->
   <select id="selectByUnameAndUpwd"  resultMap="BaseResultMap" >
     select

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<meta charset="utf-8">
+		
+		<script>
+		    function jump(){
+		        window.location.href="register.html";
+		    }
+		</script>
+		<script>
+		    function jump1(){
+		        window.location.href="main.html";
+		    }
+		</script>
+		<title>首页</title>
+		<style>
+			*{
+				margin: 0px;
+				font-size: 14px;
+				color: #696969;
+			}
+			/*网站的头部*/
+			.header{
+				height: 70px;
+				background-color: #ffffff;
+				padding-left: 30px;
+				line-height: 70px;
+				font-family: 仿宋;
+				font-size: 30px;
+				font-weight: bold;
+			}
+			.footer{
+				margin-top: 132px;
+				margin-bottom: 0px;
+				height: 70px;
+				background-color: #ffffff;
+				line-height: 70px;
+				padding-left: 1500px;
+				font-size: 20px;
+			}
+			body{
+				background-image: url(../img/登录.jpg);
+			}
+			.pz{
+				position:absolute;
+				left:280px;
+				top:5px;
+			}
+			.zw{
+				position:absolute;
+				left:50px;
+				top:202px;
+			}
+			.zx{
+				position:absolute;
+				left:1750px;
+				top:905px;
+			}
+			.time{
+				float: right;
+				margin-top: 5px;
+				text-align: right;
+				font-family: 仿宋;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			.a{
+				height: 566px;
+				width: 500px;
+				background-color: #ffffff;
+				border-color: #1B6D85;
+				margin-top: 132px;
+				margin-left: 1330px;
+			}
+			.botton{
+				width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+			<header class="header">
+				唯一狠云制造平台
+				<div class="time">
+				<SCRIPT language=JavaScript>
+				<!--
+				tmpDate = new Date();
+				date = tmpDate.getDate();
+				month= tmpDate.getMonth() + 1 ;
+				year= tmpDate.getYear() + 1900;
+				document.write(year);
+				document.write("年");
+				document.write(month);
+				document.write("月");
+				document.write(date);
+				document.write("日 ");
+				myArray=new Array(6);
+				myArray[0]="星期日 "
+				myArray[1]="星期一 "
+				myArray[2]="星期二 "
+				myArray[3]="星期三 "
+				myArray[4]="星期四 "
+				myArray[5]="星期五 "
+				myArray[6]="星期六 "
+				weekday=tmpDate.getDay();
+				if (weekday==0 | weekday==6)
+				{
+				document.write(myArray[weekday])
+				}
+				else
+				{
+				document.write(myArray[weekday])
+				}
+				// -->
+				</SCRIPT>
+				</div>
+			</header>
+			<div class="a">
+				<div style="height: 150px;width: 500px;line-height: 150px;text-align: center;font-family:黑体;font-weight: bold;font-size: 80px;">企业登录</div>
+				<div style="height: 16px;width: 500px;font-weight: bold;text-align: center;padding-top: 0px;">——————————————————————————</div>
+				<div style="height: 150px;width: 500px;line-height: 150px;text-align: center;font-family:宋体;font-weight: bold;padding-bottom: 0px;"><label>用户名:</label> <input type="text" id="uname"  name="uname"  value=""  placeholder="请输入用户名" /></div>
+				<div style="height: 150px;width: 500px;line-height: 150px;text-align: center;font-family:宋体;font-weight: bold;"></label>密 码:<input type="password" id="upwd"  name="upwd" value="" placeholder="请输入密码" /></div>
+				<div id="main" class="botton">
+					<div id="left" style="width: 250px;float: left;text-align: center;"><p><input id=login type="submit" value="登录" onclick=javascrtpt:jump1()></p></div>
+					<div id="right" style="width: 250px;float: left;text-align: center;"><p><input id=register type="submit" value="注册" onclick=javascrtpt:jump()></p></div>
+				</div>
+			</div>
+			<footer class="footer">
+				论专业还得看我建朝哥哥的
+			</footer>
+			<p class="pz"><img src="..img/pz.jpg" ></p>
+			<p class="zw"><img src="../img/zw.jpg"></p>
+			<p class="zx"><img src="..img/zx1.jpg"></p>
+	    <script src="resources/scripts/axure/ios.js"></script>	
+	
+	
+	</body>
+</html>

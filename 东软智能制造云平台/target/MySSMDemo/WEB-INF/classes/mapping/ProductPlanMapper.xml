@@ -13,6 +13,41 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		plan_num, order_num, product_num, plan_count, plan_start_date, plan_end_date, plan_status
+	</sql>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_plan
+  </select>
+  <select id="selectByNum"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_plan
+    where product_num=#{product_num}
+  </select>
+  <select id="selectByPlan"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product_plan
+    where plan_num=#{plan_num}
+  </select>
+  <update id="updateByStatus" parameterType="com.neusoft.entity.ProductOrder">
+		update product_plan
+		set plan_status = 2
+		where plan_num = #{plan_num}
+	</update>
+  <update id="updateByStatus2" parameterType="com.neusoft.entity.ProductOrder">
+		update product_plan
+		set plan_status = 3
+		where order_num = #{order_num}
+	</update>
+  <delete id="deleteByNum" parameterType="com.neusoft.entity.ProductOrder" >
+    delete from product_plan
+    where plan_num = #{plan_num}
+  </delete>
+
   <insert id="insert" parameterType="com.neusoft.entity.ProductPlan" >
     insert into product_plan (plan_num, order_num, product_num, 
       plan_count, plan_start_date, plan_end_date, 

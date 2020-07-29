@@ -22,7 +22,7 @@ public class FactoryController {
     @Autowired
     private FactoryService factoryService;
 
-    @RequestMapping(value = "/loginservice",method = {RequestMethod.POST})
+    @RequestMapping(value = "/loginservice")
     public void loginService(@RequestParam(required = true) String uname,
                              @RequestParam(required = true) String upwd,
                              HttpSession session,
@@ -40,17 +40,17 @@ public class FactoryController {
 
 
 
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/home.jsp");
         }
         else
         {
             //登录不成功,返回登录页面
-            response.sendRedirect("/login.html");
+            response.sendRedirect("/index.jsp");
             System.out.println("登录失败");
         }
 
     }
-    @RequestMapping(value="registerservice" ,method = {RequestMethod.POST})
+    @RequestMapping(value="registerservice")
     public void registerService(
             @RequestParam(required = true) String uname,
             @RequestParam(required = true) String upwd,
@@ -62,7 +62,8 @@ public class FactoryController {
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
             PrintWriter pw=response.getWriter();
-            pw.write("<script language='javascript' charset='utf-8' >alert('该用户名已被注册')</script>");
+            pw.write("<script language='javascript' charset='utf-8' >alert('This username has been registered!');"+"window.location='/register.jsp'</script>");
+
         }
         else {
             Factory user2=factoryService.getUser2(ufty);
@@ -70,7 +71,8 @@ public class FactoryController {
                 request.setCharacterEncoding("utf-8");
                 response.setCharacterEncoding("utf-8");
                 PrintWriter pw=response.getWriter();
-                pw.write("<script language='javascript' charset='utf-8' >alert('该工厂名已被注册')</script>");
+                pw.write("<script language='javascript' charset='utf-8' >alert('This factory has been registered');"+"window.location='/register.jsp'</script>");
+
             }
             else {
                 Factory user = new Factory();
@@ -83,8 +85,8 @@ public class FactoryController {
                 request.setCharacterEncoding("utf-8");
                 response.setCharacterEncoding("utf-8");
                 PrintWriter pw=response.getWriter();
-                pw.write("<script language='javascript' charset='utf-8' >alert('注册成功，请重新登录');" +
-                        "window.location='/login.html'</script>");
+                pw.write("<script language='javascript' charset='utf-8' >alert('Registered successfully, please login again!');" +
+                        "window.location='/index.jsp'</script>");
             }
         }
     }

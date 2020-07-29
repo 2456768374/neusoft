@@ -9,6 +9,40 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		equipment_num, equipment_img_url, equipment_status
+	</sql>
+  <select id="get" resultType="map">
+ SELECT CASE WHEN equipment_status='10' THEN '启用' WHEN equipment_status='20' THEN '停用' WHEN equipment_status='30' THEN '故障'
+end AS Status,count(*)as sum FROM equipment GROUP BY equipment_status
+    </select>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from equipment
+  </select>
+  <select id="selectByNum"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from equipment
+    where equipment_num=#{equipment_num}
+  </select>
+<!--  停用-->
+  <update id="update" parameterType="com.neusoft.entity.Product">
+		update equipment
+		set equipment_status = 20
+		where equipment_num=#{equipment_num}
+	</update>
+<!--  启用-->
+  <update id="update2" parameterType="com.neusoft.entity.Product">
+		update equipment
+		set equipment_status = 10
+		where equipment_num=#{equipment_num}
+	</update>
+  <delete id="deleteByNum" parameterType="com.neusoft.entity.Product" >
+    delete from equipment
+    where equipment_num = #{equipment_num}
+  </delete>
   <insert id="insert" parameterType="com.neusoft.entity.Equipment" >
     insert into equipment (equipment_num, equipment_img_url, equipment_status, 
       by1, by2, by3)

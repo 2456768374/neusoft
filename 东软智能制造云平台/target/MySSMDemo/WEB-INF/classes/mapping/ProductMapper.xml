@@ -10,6 +10,31 @@
     <result column="by2" property="by2" jdbcType="VARCHAR" />
     <result column="by3" property="by3" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+		product_num, product_name, product_img_url, product_count
+	</sql>
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product
+  </select>
+  <select id="selectByNum"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product
+    where product_num=#{product_num}
+  </select>
+  <select id="selectByName"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from product
+    where product_name=#{product_name}
+  </select>
+  <delete id="deleteByNum" parameterType="com.neusoft.entity.Product" >
+    delete from product
+    where product_num = #{product_num}
+  </delete>
+
   <insert id="insert" parameterType="com.neusoft.entity.Product" >
     insert into product (product_num, product_name, product_img_url, 
       product_count, by1, by2, 

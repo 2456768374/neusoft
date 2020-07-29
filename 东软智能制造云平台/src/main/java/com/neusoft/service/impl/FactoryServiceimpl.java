@@ -37,4 +37,9 @@ public class FactoryServiceimpl implements FactoryService {
     public void insert(Factory record) {
         factoryMapper.insert(record);
     }
+
+    @Override
+    public List<Factory> selectAll() {
+        return factoryMapper.selectAll();
+    }
 }
